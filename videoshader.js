@@ -39,11 +39,13 @@ out vec4 fragColor;
 
 void main() {
     vec2 uv = v_texcoord * vec2(1.0, -1.0);
-    uv.y += sin(v_texcoord.x * 20.0 + time) * cos(time) * 0.1 + sin(v_texcoord.x * 40.0 + time * 3.145) * sin(time) * 0.02;
-    uv.x += sin(v_texcoord.y * 20.0 + time) * cos(time) * 0.1 + sin(v_texcoord.y * 40.0 + time * 3.145) * sin(time) * 0.02;
+    uv.y += sin(v_texcoord.x * (sin(v_texcoord.y - time * 0.5) * 5.0 + 10.0) + time) * cos(time) * 0.1 + sin(v_texcoord.x * 40.0 + time * 3.145) * sin(time) * 0.02;
+    uv.x += sin(v_texcoord.y * (sin(v_texcoord.x - time * 0.5) * 5.0 + 10.0) + time) * cos(time) * 0.1 + sin(v_texcoord.y * 40.0 + time * 3.145) * sin(time) * 0.02;
 
     vec4 color = texture(tex, uv);
-    color.r *= (sin(uv.x * uv.y * 40.0) + 3.0) / 2.0;
+    color.r *= (sin(uv.x * uv.y * 40.0) + 3.0) / 3.0;
+    color.g *= (sin(uv.x * uv.x * uv.y * 80.0) + 3.0) / 3.0;
+    color.b *= (sin(uv.x * uv.y * uv.y * 80.0) + 3.0) / 3.0;
 
     fragColor = color;
 }`;
