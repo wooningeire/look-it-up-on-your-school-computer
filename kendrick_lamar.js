@@ -6,7 +6,7 @@ audio.addEventListener("loadeddata", () => {
             audio.currentTime = 0;
             audio.play();
             f();
-        }, Math.random() * 60_000);
+        }, Math.random() * 120_000);
     };
     audio.play();
     f();
