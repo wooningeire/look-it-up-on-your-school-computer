@@ -1,10 +1,12 @@
 // multiple choice
-[...document.querySelectorAll(".multiple-choice-question")].forEach(async q => {
+[...document.querySelectorAll(".multiple-choice-question, .definition-match-question")].forEach(async q => {
     for (const x of q.querySelectorAll("input[type='radio']")) {
-		await new Promise(resolve => setTimeout(resolve, 250));
 		x.click();
+		await new Promise(resolve => setTimeout(resolve, 250));
+		if (q.querySelector(".correct")) break;
     }
 });
+// to answer drag and drop questions, enable accessibility mode in the book subscription settings
 
 // short answer
 [...document.querySelectorAll(".show-answer-button")].forEach(x => (x.click(), x.click()));
@@ -31,5 +33,3 @@ setTimeout(() => {
 
 // simulation
 [...document.querySelectorAll(".enter-simulation")].forEach(x => x.click());
-
-// drag and drop not yet supported
