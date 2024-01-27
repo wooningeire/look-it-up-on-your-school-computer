@@ -17,7 +17,7 @@ setTimeout(() => {
         const ans = q.querySelector(".forfeit-answer").textContent;
         const t = q.querySelector("textarea");
         t.value = ans;
-        t.dispatchEvent(new KeyboardEvent("input"));
+        t.dispatchEvent(new InputEvent("input"));
         q.querySelector(".check-button").click();
     });
     console.log("short answers done");
@@ -42,6 +42,7 @@ console.log("simulations done");
 
 // custom tools
 [...document.querySelectorAll(".content-tool-container")].forEach(c => {
-    c.querySelector("button").click();
+    c.querySelector("button:not(.grey)")?.click();
+    c.querySelector("input")?.dispatchEvent(new InputEvent("input"));
 });
 console.log("custom tools done");
