@@ -8,6 +8,15 @@ Promise.all(
         }
     })
 ).then(() => console.log("multiple choices done"));
+Promise.all(
+    [...document.querySelectorAll(".detect-answer-question")].map(async q => {
+        for (const x of q.querySelectorAll("button")) {
+            x.click();
+            await new Promise(resolve => setTimeout(resolve, 250));
+            if (q.querySelector(".correct")) break;
+        }
+    })
+).then(() => console.log("multiple choices done"));
 // to answer drag and drop questions, enable accessibility mode in the book subscription settings
 
 // short answer
@@ -29,9 +38,9 @@ Promise.all(
         c.querySelector(".start-button")?.click();
         c.querySelector("input[type='checkbox']").click();
 
-        while (!c.querySelector("[aria-label='Play again']")) {
+        while (!c.querySelector(".play-button.rotate-180")) {
             await new Promise(resolve => setTimeout(resolve, 250));
-            c.querySelector("[aria-label='Play']")?.click();    
+            c.querySelector(".play-button:not(.rotate-180)")?.click();    
         }
     })
 ).then(() => console.log("animations done"));
