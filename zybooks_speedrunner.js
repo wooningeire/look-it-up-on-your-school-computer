@@ -16,7 +16,7 @@ Promise.all(
             if (q.querySelector(".correct")) break;
         }
     })
-).then(() => console.log("multiple choices done"));
+).then(() => console.log("detect answers done"));
 // to answer drag and drop questions, enable accessibility mode in the book subscription settings
 
 // short answer
