@@ -1,12 +1,11 @@
-// run while the section is still loading to do challenges
-
+// run the script while the section content is still loading
 
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 const tick = () => wait(0);
 
 const container = document.querySelector(".route-container");
 
-const doParticipation = () => {
+const doParticipation = (waitBeforeAnimations=false) => {
 	// multiple choice
 	Promise.all(
 		[...document.querySelectorAll(".multiple-choice-question, .definition-match-question")].map(async q => {
@@ -44,6 +43,9 @@ const doParticipation = () => {
 	// animation
 	Promise.all(
 		[...document.querySelectorAll(".animation-controls")].map(async c => {
+			if (waitBeforeAnimations) {
+				await wait(6000); // wait for animations to reload?
+			}
 			c.querySelector(".start-button")?.click();
 			c.querySelector("input[type='checkbox']").click();
 
@@ -111,14 +113,11 @@ Object.defineProperty(Object.prototype, "toolSpecificCheckWhetherAnswerIsCorrect
 });
 
 if (sectionNotLoaded()) {
-	const sectionObserver = new MutationObserver(() => {
+	const sectionObserver = new MutationObserver(async () => {
 		if (sectionNotLoaded()) return;
-	
 		sectionObserver.disconnect();
-	
 		console.log("section loaded");
-	
-		doParticipation();
+		doParticipation(true);
 	});
 	sectionObserver.observe(container, {
 		childList: true,
@@ -132,11 +131,8 @@ if (sectionNotLoaded()) {
 if (challengesNotLoaded()) {
 	const challengesObserver = new MutationObserver(() => {
 		if (challengesNotLoaded()) return;
-	
 		challengesObserver.disconnect();
-	
 		console.log("all challenges loaded");
-	
 		doChallenges();
 	});
 	challengesObserver.observe(container, {
