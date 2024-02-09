@@ -94,7 +94,7 @@
 				!== container.querySelectorAll(".challenge").length
 	);
 
-	if (!globalThis.hasBeenRun) {
+	if (!globalThis.speedrunnerLoaded) {
 		Object.defineProperty(Object.prototype, "toolSpecificCheckWhetherAnswerIsCorrect", {
 			set(value) {
 				// console.log(this);
@@ -107,7 +107,6 @@
 						return obj;
 					},
 				});
-				globalThis.oops = this;
 			},
 			get() {
 				return;
@@ -142,10 +141,10 @@
 			childList: true,
 			subtree: true,
 		});
-	} else if (globalThis.hasBeenRun) {
+	} else if (globalThis.speedrunnerLoaded) {
 		doChallenges();
 	} else {
 		console.log("%creenter the section and then run again to do challenges", "font-size: 2em; color: #a04");
 	}
-	globalThis.hasBeenRun = true;
+	globalThis.speedrunnerLoaded = true;
 }
