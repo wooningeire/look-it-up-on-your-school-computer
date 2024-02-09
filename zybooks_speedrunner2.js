@@ -7,6 +7,7 @@ Object.defineProperty(Object.prototype, "resource", {
 			configurable: true,
 		});
 		
+		if (!value) return;
 		switch (value.activity_type) {
 			case "participation":
 				setTimeout(() => {
