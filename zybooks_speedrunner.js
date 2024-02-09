@@ -101,7 +101,7 @@
 				Object.defineProperty(this, "toolSpecificCheckWhetherAnswerIsCorrect", {
 					value: function (...args) {
 						const obj = value.apply(this, args);
-						obj.userAnswer = obj.expectedAnswer;
+						// obj.userAnswer = obj.expectedAnswer;
 						obj.isCorrect = true;
 						obj.showTryAgain = false;
 						return obj;
