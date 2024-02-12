@@ -1,6 +1,7 @@
 const audioSrcs = [
     "https://github.com/wooningeire/look-it-up-on-your-school-computer/raw/main/kendrick-lamar-scream-made-with-Voicemod-technology.mp3",
     "https://github.com/wooningeire/look-it-up-on-your-school-computer/raw/main/San_Jose_Strut.mp3",
+    "https://github.com/wooningeire/look-it-up-on-your-school-computer/raw/main/ooh%20ooh%20temu.wav",
 ];
 for (const audioSrc of audioSrcs) {
     const audio = new Audio();
